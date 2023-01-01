@@ -1,4 +1,5 @@
-﻿namespace DataStructureProgram
+﻿using System.Collections.Generic;
+namespace DataStructureProgram
 {
     internal class Program
     {
@@ -10,16 +11,17 @@
             bool flag = true;
             while (flag)
             {
-                Console.WriteLine("\nSelect the operation to perform \n1.UnOrdered List \n2.Display List \n3.Search value \n4.Exit");
+                Console.WriteLine("\nSelect the operation to perform \n1.UnOrdered List \n2.Display List \n3.Search value " +
+                    "\n4.Ordered List \n5.Exit");
                 int options = Convert.ToInt32(Console.ReadLine());
                 switch (options)
                 {
                     case 1:
                         string file = File.ReadAllText(filpath);
                         string[] fileList = file.Split(",");
-                        foreach (var word in fileList)
+                        foreach (var data in fileList)
                         {
-                            list.Add(word);
+                            list.Add(data);
                         }
                         break;
                     case 2:
@@ -29,6 +31,17 @@
                         Console.WriteLine("Enter value u want to search");
                         string value = Console.ReadLine();
                         list.Search(value);
+                        break;
+                    case 4:
+                        string listFile = File.ReadAllText(filpath);
+                        string[] FileList = listFile.Split(",");
+                        foreach (var word in FileList)
+                        {
+                            list.Add(word);
+                        }
+                        list.SortList();
+                        Console.WriteLine("\nAfter Sorting list :");
+                        list.DisplayList();
                         break;
                     default:
                         flag = false;
